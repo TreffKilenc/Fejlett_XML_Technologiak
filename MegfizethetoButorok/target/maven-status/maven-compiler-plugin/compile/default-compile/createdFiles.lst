@@ -1,0 +1,12 @@
+hu\unideb\inf\megfizethetobutorok\model\Furniture$Description.class
+hu\unideb\inf\megfizethetobutorok\search\ProductNumberSearch.class
+hu\unideb\inf\megfizethetobutorok\model\package-info.class
+hu\unideb\inf\megfizethetobutorok\model\SearchResultItem.class
+hu\unideb\inf\megfizethetobutorok\parser\SearchResultsParser.class
+hu\unideb\inf\megfizethetobutorok\model\SearchResults.class
+hu\unideb\inf\megfizethetobutorok\search\SimpleSearch.class
+hu\unideb\inf\megfizethetobutorok\model\Furniture.class
+hu\unideb\inf\megfizethetobutorok\jaxb\JAXBUtil.class
+hu\unideb\inf\megfizethetobutorok\model\Furniture$Service.class
+hu\unideb\inf\megfizethetobutorok\parser\FurnitureParser.class
+hu\unideb\inf\megfizethetobutorok\model\Furniture$Feature.class

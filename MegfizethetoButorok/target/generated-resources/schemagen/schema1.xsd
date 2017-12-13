@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.inf.unideb.hu/Furniture" elementFormDefault="qualified" targetNamespace="http://www.inf.unideb.hu/Furniture" version="1.0">
+
+  <xs:element name="furniture" type="tns:furniture"/>
+
+  <xs:element name="searchResultItem" type="tns:searchResultItem"/>
+
+  <xs:element name="searchResults" type="tns:searchResults"/>
+
+  <xs:complexType name="furniture">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Alnitak]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="product_number" type="xs:string"/>
+      <xs:element name="price" type="xs:int"/>
+      <xs:element minOccurs="0" name="delivery_time" type="xs:string"/>
+      <xs:element minOccurs="0" name="properties">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="property" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="features">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="feature" type="tns:feature"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="delivery_conditions">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="delivery_condition" type="tns:service"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="deliveries">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="delivery" type="tns:service"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="descriptions">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="description" type="tns:description"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="feature">
+    <xs:sequence>
+      <xs:element form="unqualified" name="name" type="xs:string"/>
+      <xs:element form="unqualified" minOccurs="0" name="options">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element form="unqualified" maxOccurs="unbounded" name="option" type="tns:service"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="service">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="price" type="xs:int" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="description">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="unit" type="xs:string"/>
+        <xs:attribute name="descriptionValue" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="searchResultItem">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Alnitak]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="product_number" type="xs:string"/>
+      <xs:element name="price" type="xs:int"/>
+      <xs:element minOccurs="0" name="properties">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="property" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:string" use="required"/>
+    <xs:attribute name="image" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="searchResults">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Alnitak]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:searchResultItem"/>
+    </xs:sequence>
+    <xs:attribute name="from" type="xs:int" use="required"/>
+    <xs:attribute name="to" type="xs:int" use="required"/>
+  </xs:complexType>
+</xs:schema>
