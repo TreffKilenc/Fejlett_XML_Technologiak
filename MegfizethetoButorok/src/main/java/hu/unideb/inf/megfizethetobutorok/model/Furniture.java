@@ -8,12 +8,14 @@ package hu.unideb.inf.megfizethetobutorok.model;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -50,7 +52,8 @@ public class Furniture {
     private Integer price;
 
     @XmlElement(name = "delivery_time", required = false)
-    private String delivery_time;
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private Date delivery_time;
 
     @XmlElementWrapper
     @XmlElement(name = "property", required = true)
@@ -107,14 +110,14 @@ public class Furniture {
         this.price = price;
     }
 
-    public String getDelivery_time() {
+    public Date getDelivery_time() {
         return delivery_time;
     }
 
-    public void setDelivery_time(String delivery_time) {
+    public void setDelivery_time(Date delivery_time) {
         this.delivery_time = delivery_time;
     }
-
+    
     public ArrayList<String> getProperties() {
         return properties;
     }

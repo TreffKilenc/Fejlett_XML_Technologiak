@@ -9,7 +9,10 @@ import hu.unideb.inf.megfizethetobutorok.jaxb.JAXBUtil;
 import hu.unideb.inf.megfizethetobutorok.model.Furniture;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
@@ -57,14 +60,31 @@ public class FurnitureParser {
             System.out.println("A cim nem található!");
         }
         try {
+            //IDE???
             Integer price = Integer.parseInt(doc.select("link[itemprop=price]").first().attr("content").trim());
             furniture.setPrice(price);
         } catch (Exception e) {
             System.out.println("Az ár nem található!");
         }
         try {
-            String delivery_time = doc.select("p.delivery-time").first().attr("data-actualdeliverytime").trim();
-            furniture.setDelivery_time(delivery_time);
+            String delivery_time_element = doc.select("p.delivery-time").first().attr("data-actualdeliverytime").trim();
+            String[] delivery_times = delivery_time_element.split(" ");
+            Integer year = Integer.parseInt(delivery_times[0]);
+            String monthtext = delivery_times[1];
+            DateFormatSymbols symbols = new DateFormatSymbols(new Locale("hu"));
+            String[] monthNames = symbols.getMonths();
+            Integer month = null;
+            for(int i = 0; i<monthNames.length;++i){
+                if(monthNames[i].equals(monthtext)){
+                    month = i;
+                    break;
+                }
+            }
+            if(month != null){
+                Calendar c = Calendar.getInstance();
+                c.set(year, month, 1, 0, 0);  
+                furniture.setDelivery_time(c.getTime());
+            }
         } catch (Exception e) {
             System.out.println("A szállítási idő nem található!");
         }
