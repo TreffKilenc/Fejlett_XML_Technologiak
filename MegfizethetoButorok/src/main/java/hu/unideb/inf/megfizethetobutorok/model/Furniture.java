@@ -5,10 +5,9 @@
  */
 package hu.unideb.inf.megfizethetobutorok.model;
 
+import java.time.YearMonth;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import java.util.ArrayList;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -41,7 +40,7 @@ public class Furniture {
 
     @XmlAttribute(required = true)
     private String uri;
-    
+
     @XmlElement(name = "title", required = true)
     private String title;
 
@@ -52,8 +51,8 @@ public class Furniture {
     private Integer price;
 
     @XmlElement(name = "delivery_time", required = false)
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    private Date delivery_time;
+    @XmlJavaTypeAdapter(YearMonthAdapter.class)
+    private YearMonth delivery_time;
 
     @XmlElementWrapper
     @XmlElement(name = "property", required = true)
@@ -70,11 +69,11 @@ public class Furniture {
     @XmlElementWrapper
     @XmlElement(name = "delivery", required = true)
     private ArrayList<Service> deliveries;
-     
+
     @XmlElementWrapper
     @XmlElement(name = "description", required = false)
     private ArrayList<Description> descriptions;
-    
+
     public Furniture() {
     }
 
@@ -110,14 +109,14 @@ public class Furniture {
         this.price = price;
     }
 
-    public Date getDelivery_time() {
+    public YearMonth getDelivery_time() {
         return delivery_time;
     }
 
-    public void setDelivery_time(Date delivery_time) {
+    public void setDelivery_time(YearMonth delivery_time) {
         this.delivery_time = delivery_time;
     }
-    
+
     public ArrayList<String> getProperties() {
         return properties;
     }
@@ -157,21 +156,22 @@ public class Furniture {
     public void setDescriptions(ArrayList<Description> descriptions) {
         this.descriptions = descriptions;
     }
-    
+
     public String toString() {
         return ReflectionToStringBuilder.toString(this);
     }
-    
+
     @XmlAccessorType(XmlAccessType.FIELD)
     @javax.xml.bind.annotation.XmlType(namespace = "http://www.inf.unideb.hu/Furniture")
-    public static class Description{
+    public static class Description {
+        
         @XmlValue
         private String name;
-        
-        @XmlAttribute (required = false)
+
+        @XmlAttribute(required = false)
         private String unit;
-        
-        @XmlAttribute (required = false)
+
+        @XmlAttribute(required = false)
         private String description_value;
 
         public Description() {
@@ -183,11 +183,11 @@ public class Furniture {
 
         public void setName(String name) {
             this.name = name;
-       }
+        }
 
         public String getUnit() {
             return unit;
-        }        
+        }
 
         public void setUnit(String unit) {
             this.unit = unit;
@@ -200,14 +200,14 @@ public class Furniture {
         public void setDescription_value(String description_value) {
             this.description_value = description_value;
         }
-        
-        public static ArrayList<String> getUnits(){
+
+        public static ArrayList<String> getUnits() {
             ArrayList<String> units = new ArrayList<>();
             units.add("kg");
             units.add("cm");
             return units;
         }
-        
+
         public String toString() {
             return ReflectionToStringBuilder.toString(this);
         }
@@ -226,7 +226,7 @@ public class Furniture {
 
         public Feature() {
         }
-        
+
         public Feature(String name, ArrayList<Service> options) {
             this.name = name;
             this.options = options;
@@ -290,5 +290,5 @@ public class Furniture {
         public String toString() {
             return ReflectionToStringBuilder.toString(this);
         }
-    }            
+    }
 }

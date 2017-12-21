@@ -10,8 +10,8 @@ import hu.unideb.inf.megfizethetobutorok.model.Furniture;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormatSymbols;
+import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,16 +74,14 @@ public class FurnitureParser {
             DateFormatSymbols symbols = new DateFormatSymbols(new Locale("hu"));
             String[] monthNames = symbols.getMonths();
             Integer month = null;
-            for(int i = 0; i<monthNames.length;++i){
-                if(monthNames[i].equals(monthtext)){
-                    month = i;
+            for (int i = 0; i < monthNames.length; ++i) {
+                if (monthNames[i].equals(monthtext.toLowerCase())) {
+                    month = ++i;
                     break;
                 }
             }
-            if(month != null){
-                Calendar c = Calendar.getInstance();
-                c.set(year, month, 1, 0, 0);  
-                furniture.setDelivery_time(c.getTime());
+            if (month != null) {
+                furniture.setDelivery_time(YearMonth.of(year, month));
             }
         } catch (Exception e) {
             System.out.println("A szállítási idő nem található!");

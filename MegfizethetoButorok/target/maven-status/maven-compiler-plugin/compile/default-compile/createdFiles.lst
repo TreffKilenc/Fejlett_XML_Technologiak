@@ -7,7 +7,7 @@ hu\unideb\inf\megfizethetobutorok\model\SearchResults.class
 hu\unideb\inf\megfizethetobutorok\search\SimpleSearch.class
 hu\unideb\inf\megfizethetobutorok\model\Furniture.class
 hu\unideb\inf\megfizethetobutorok\jaxb\JAXBUtil.class
+hu\unideb\inf\megfizethetobutorok\model\YearMonthAdapter.class
 hu\unideb\inf\megfizethetobutorok\model\Furniture$Service.class
 hu\unideb\inf\megfizethetobutorok\parser\FurnitureParser.class
-hu\unideb\inf\megfizethetobutorok\model\DateAdapter.class
 hu\unideb\inf\megfizethetobutorok\model\Furniture$Feature.class
